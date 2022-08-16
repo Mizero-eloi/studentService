@@ -1,6 +1,7 @@
 package com.example.studentservice.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -10,6 +11,17 @@ public class Student {
     @Column(name = "student_name")
     private String studentName;
     private  int age;
+
+    @OneToMany(mappedBy = "student")
+    List<Book> allBooks;
+
+    public List<Book> getAllBooks() {
+        return allBooks;
+    }
+
+    public void setAllBooks(List<Book> allBooks) {
+        this.allBooks = allBooks;
+    }
 
     public Student(String studentName, int age) {
         this.studentName = studentName;
